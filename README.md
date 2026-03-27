@@ -105,8 +105,6 @@ Imagine having an AI assistant that instantly verifies news authenticity and tel
 
 ## Data Flow & Security
 
-![Data Flow Diagram](fake_nes_detection.jpg.jpeg)
-
 ```mermaid id="oq197j"
 sequenceDiagram
     %% Define Participants
@@ -128,6 +126,3 @@ sequenceDiagram
     Note over F: Frontend updates UI
     Note over B: Backend Process Logic
     Note over AI: AI generate counter analysis
-
----
-
