@@ -1,5 +1,4 @@
 # NewsShield
-![NewsShield banner](frontend/public/perspective_banner.jpg)
 
 ### Table of Contents
 - [NewsShield](#newsshield-ai)
