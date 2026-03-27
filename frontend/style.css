@@ -1,0 +1,175 @@
+:root {
+    --bg-base: #0f172a;
+    --glass-bg: rgba(30, 41, 59, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    
+    /* Dynamic Verdict Colors */
+    --color-fake: #ef4444;
+    --color-real: #10b981;
+    --color-unverified: #f59e0b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--bg-base);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Ambient Background Orbs */
+.bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    opacity: 0.5;
+    animation: float 10s infinite alternate ease-in-out;
+}
+.orb-1 { width: 400px; height: 400px; background: rgba(59, 130, 246, 0.3); top: -10%; left: -10%; }
+.orb-2 { width: 500px; height: 500px; background: rgba(139, 92, 246, 0.2); bottom: -10%; right: -10%; animation-delay: -5s; }
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 50px) scale(1.1); }
+}
+
+.container { width: 100%; max-width: 800px; z-index: 1; }
+
+/* Header */
+header { text-align: center; margin-bottom: 2.5rem; }
+.logo-wrapper { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px; }
+.logo-icon { font-size: 2.5rem; }
+h1 { font-size: 2.5rem; font-weight: 700; background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; color: transparent; letter-spacing: -0.05em; }
+.subtitle { color: var(--text-muted); font-size: 1.1rem; }
+
+/* Glass Panel Layout */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Input Area */
+.textarea-wrapper { position: relative; margin-bottom: 1.5rem; }
+textarea {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.2rem;
+    color: var(--text-main);
+    font-size: 1.05rem;
+    font-family: inherit;
+    resize: vertical;
+    outline: none;
+    transition: all 0.3s ease;
+}
+textarea::placeholder { color: #64748b; }
+textarea:focus { border-color: var(--primary); background: rgba(15, 23, 42, 0.8); box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); }
+
+/* Buttons */
+.primary-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+}
+.primary-btn:hover:not(:disabled) { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4); }
+.primary-btn:disabled { background: #334155; color: #94a3b8; cursor: not-allowed; box-shadow: none; transform: none; }
+
+/* Dashboard & Bento Grid */
+.dashboard { margin-top: 2.5rem; animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.hidden { display: none !important; }
+
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.verdict-banner {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(0,0,0,0.2);
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--glass-border);
+}
+.verdict-banner h2 { font-size: 1.2rem; font-weight: 500; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 12px; }
+
+.badge { padding: 0.4rem 1.2rem; border-radius: 30px; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.badge.fake { background: rgba(239, 68, 68, 0.15); color: var(--color-fake); border: 1px solid rgba(239, 68, 68, 0.3); }
+.badge.real { background: rgba(16, 185, 129, 0.15); color: var(--color-real); border: 1px solid rgba(16, 185, 129, 0.3); }
+.badge.unverified { background: rgba(245, 158, 11, 0.15); color: var(--color-unverified); border: 1px solid rgba(245, 158, 11, 0.3); }
+
+/* Bento Cards */
+.bento-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.full-width { grid-column: 1 / -1; }
+
+.bento-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.bento-card:hover { background: rgba(255, 255, 255, 0.05); }
+
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
+.card-header h3 { font-size: 0.95rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.card-header .icon { font-size: 1.2rem; }
+
+/* Custom Progress Meter */
+.meter-wrapper { width: 100%; background: #1e293b; border-radius: 20px; height: 14px; overflow: hidden; margin-bottom: 1rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5); }
+.meter-fill { height: 100%; width: 0%; border-radius: 20px; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.5s ease; }
+.score-display { font-size: 2.5rem; font-weight: 700; line-height: 1; }
+.score-display .percent { font-size: 1.2rem; color: var(--text-muted); font-weight: 500; margin-left: 4px; }
+
+/* Tags */
+.tags-container { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+    background: rgba(59, 130, 246, 0.1);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Reasoning Text */
+.reasoning-text { color: #cbd5e1; line-height: 1.7; font-size: 1.05rem; }
+
+/* Loading Spinner */
+.spinner { width: 22px; height: 22px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #fff; animation: spin 0.8s ease-in-out infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+    .bento-grid { grid-template-columns: 1fr; }
+    .glass-panel { padding: 1.5rem; }
+    h1 { font-size: 2rem; }
+}
