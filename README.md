@@ -181,7 +181,7 @@ graph TB
         style Analyzer fill:#D1E8FF,stroke:#005BBB,stroke-width:2px,color:#000,font-weight:bold
         style CNEngine fill:#D1E8FF,stroke:#005BBB,stroke-width:2px,color:#000,font-weight:bold
         style Context fill:#D1E8FF,stroke:#005BBB,stroke-width:2px,color:#000,font-weight:bold
-        API[FastAPI Server]
+        API[Google Gemini API]
         Analyzer[Content Analyzer]
         CNEngine[Counter-Narrative Engine]
         Context[Context Manager]
