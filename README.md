@@ -121,8 +121,109 @@ sequenceDiagram
     AI->>B: Display False Output
     B->>F: Deliver Results
     F->>U: Display Balanced Insights
+```
+---
 
-    %% Notes for Clarity
-    Note over F: Frontend updates UI
-    Note over B: Backend Process Logic
-    Note over AI: AI generate counter analysis
+## Setup & Deployment
+
+### Frontend Setup
+Go to frontend/index.html
+Right-click → Open with Live Server
+
+ 
+```
+```
+
+### Backend Setup
+
+*Install Dependencies:*
+```bash
+cd backend
+npm install
+```
+
+---
+
+
+
+*Setup environment variables:*
+  - add .env file in `/backend`directory.
+  - add following environment variable in your .env file.
+  ```
+    GEMINI_API_KEY=<your api key>
+    PORT=5000
+    
+  ```
+
+*Run backend:*
+```bash
+cd backend
+npm install
+node server.js
+
+```
+
+---
+
+## Architecture Diagram
+
+
+```mermaid
+graph TB
+    %% Define Subgraphs with Colors and Text Styles
+    subgraph Client Side
+        style UI fill:#FFDDC1,stroke:#FF6600,stroke-width:2px,color:#000,font-weight:bold
+        UI[html,css UI]
+    end
+
+    subgraph Server Side
+        style API fill:#D1E8FF,stroke:#005BBB,stroke-width:2px,color:#000,font-weight:bold
+        style Analyzer fill:#D1E8FF,stroke:#005BBB,stroke-width:2px,color:#000,font-weight:bold
+        style CNEngine fill:#D1E8FF,stroke:#005BBB,stroke-width:2px,color:#000,font-weight:bold
+        style Context fill:#D1E8FF,stroke:#005BBB,stroke-width:2px,color:#000,font-weight:bold
+        API[FastAPI Server]
+        Analyzer[Content Analyzer]
+        CNEngine[Counter-Narrative Engine]
+        Context[Context Manager]
+
+    end
+
+    subgraph AI & NLP Layer
+        style LLM fill:#E6FFCC,stroke:#66BB66,stroke-width:2px,color:#000,font-weight:bold
+      
+        LLM[LLM Service]
+    end
+
+    subgraph Data Storage
+        style VectorDB fill:#FFDDEE,stroke:#CC3366,stroke-width:2px,color:#000,font-weight:bold
+        VectorDB[(Vector Database)]
+    end
+
+    %% Define Connections with Labels
+    style Browser fill:#FFFF99,stroke:#FFAA00,stroke-width:2px,color:#000,font-weight:bold
+    Browser -->|User Interaction| UI
+    UI -->|Requests| API
+    API -->|Process| Analyzer
+    Analyzer -->|Analysis| CNEngine
+    CNEngine -->|Generates| LLM
+    API -->|Manages| Context
+    CNEngine -->|Stores| VectorDB
+    API -->|Responses| UI
+
+```
+
+---
+
+## Contributers
+- **Akash Jadhav**
+- **Vaibhav Karhale**
+- **Abhishek Bhabad**
+- **Vedant Pandit**
+- **Vinod Choudhary**
+
+
+
+
+
+
+
